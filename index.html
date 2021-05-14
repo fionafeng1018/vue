@@ -2,24 +2,41 @@
 
 <head>
     <style>
-        .disabled{
-            background-color: grey;
+        .blue-button{
+            background-color:blue;
         }
     </style>
 </head>
 
 <body>
     <div id="root">
+        <!-- Push new item to list -->
         <ul>
             <li v-for="name in names" v-text="name">
             </li>
         </ul>
-
         <input type="text" v-model="newName">
         <button @click="addName" :title="title">Add Name</button>
 
         <!--bind class conditionally-->
-        <button :class="{'disabled': isDisabled}" @click="disableButton">Disable me </button>
+        <button :class="{'blue-button':isBlue}" @click="changeButtonColor">Change color </button>
+
+        <!--bind disabled attribute-->
+        <button :disabled="isDisabled" @click="disableButton">Disable me</button>
+
+        <!-- Computed properties -->
+        <h1>All tasks</h1>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+        <h2>Completed tasks</h2>
+        <ul>
+            <li v-for="task in completedTasks" v-text="task.description"></li>
+        </ul>
+        <h2>Uncompleted tasks</h2>
+        <ul>
+            <li v-for="task in uncompletedTasks" v-text="task.description"></li>
+        </ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -34,7 +51,15 @@
                 names: ["Fiona", "Dan"],
                 title: "This is a button",
 
+                isBlue: false,
                 isDisabled: false,
+
+                tasks:[
+                    {"description":"Wash dishes", "completed":false},
+                    {"description":"Laundry","completed":false},
+                    {"description":"Feed Bambi","completed": true},
+                    {"description":"Clean Bambi's litter box","completed":true}
+                ]
             },
 
             methods: {
@@ -43,10 +68,23 @@
                     this.newName = "";
                 },
 
+                changeButtonColor(){
+                    this.isBlue = true;
+                },
+
                 disableButton(){
-                    this.isDisabled = true;
+                    this.isDisabled= true;
                 }
-            }
+            },
+
+            computed: {
+                completedTasks() {
+                    return this.tasks.filter(task => task.completed)
+                },
+                uncompletedTasks(){
+                    return this.tasks.filter(task => !task.completed)
+                }
+            },
         })
     </script>
 </body>
