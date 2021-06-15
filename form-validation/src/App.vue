@@ -9,7 +9,7 @@
 
 import Message from './components/Message.vue';
 import Counter from './components/Counter.vue';
-import FormValidation from './components/FormValidation.vue'
+import FormValidation from './components/FormValidation.vue';
 
 export default {
   name: 'app',

@@ -27,8 +27,22 @@
             <div class="field">
                 <label class="label" for="phone">Phone Number</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Please enter your phone number">
+                    <input class="input" type="tel" placeholder="Please enter your phone number">
                 </div> 
+            </div>
+
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+                </div>
+                <p class="help is-danger">This email is invalid</p>
             </div>
             <button class="button is-primary">Submit</button>
         </form>
@@ -36,8 +50,18 @@
     </div>
 </template>
 <script>
+
 export default {
-    
+
+    data(){
+        return{
+
+        }
+    },
+
+    validations:{
+
+    }
 }
 </script>
 <style lang="scss">
